@@ -44,7 +44,7 @@
 </table>
 
 <p><a href="${pageContext.request.contextPath}/user/add">Add new user</a></p>
-<p><a href="${pageContext.request.contextPath}">Get back home</a></p>
+<p><a href="${pageContext.request.contextPath}/home">Get back home</a></p>
 
 </body>
 </html>

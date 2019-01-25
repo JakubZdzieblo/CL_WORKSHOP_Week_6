@@ -10,6 +10,7 @@ import pl.coderslab.entity.Tweet;
 import pl.coderslab.repository.TweetRepository;
 import pl.coderslab.repository.UserRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -26,11 +27,6 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/home")
-    public String home(){
-        return "index";
-    }
-
     @GetMapping("/user/{id}/tweets")
     public String userTweets(@PathVariable Long id, Model model){
         List<Tweet> tweets = tweetRepository.findAllByUserId(id);
@@ -44,6 +40,5 @@ public class HomeController {
         model.addAttribute("tweets", tweets);
         return "tweets";
     }
-
 
 }

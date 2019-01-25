@@ -22,21 +22,24 @@ public class Fixture {
     public void fillDB() {
 
         User user1 = new User();
-        user1.setFirstName("John");
-        user1.setLastName("Doe");
+        user1.setUsername("johndoe");
         user1.setEmail("jd@mail.com");
+        user1.setPassword("pimpek33");
+        user1.setEnabled(true);
         userRepository.save(user1);
 
         User user2 = new User();
-        user2.setFirstName("Suzie");
-        user2.setLastName("Lane");
+        user2.setUsername("slane");
         user2.setEmail("suzie@mail.com");
+        user2.setPassword("passpass");
+        user2.setEnabled(true);
         userRepository.save(user2);
 
         User user3 = new User();
-        user3.setFirstName("Hank");
-        user3.setLastName("Black");
+        user3.setUsername("hankblack");
         user3.setEmail("hank@mail.com");
+        user3.setPassword("trolololo");
+        user3.setEnabled(true);
         userRepository.save(user3);
 
         Tweet tweet1 = new Tweet();

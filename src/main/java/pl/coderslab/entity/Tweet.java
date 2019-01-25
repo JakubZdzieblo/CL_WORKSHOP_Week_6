@@ -12,11 +12,6 @@ import java.time.LocalDateTime;
 @Table(name = "tweeter_tweet")
 public class Tweet {
 
-    // id - klucz główny
-    //title - minimalna długość 5 znaków, maksymalna długość 50, pole wymagane
-    //tweetText - pole wymagane, maksymalna długość 160 znaków
-    //created (data dodania)
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
