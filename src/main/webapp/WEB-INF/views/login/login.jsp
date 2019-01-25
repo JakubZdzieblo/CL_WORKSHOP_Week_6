@@ -16,9 +16,10 @@
 <form:form method="post" action="/login/check" modelAttribute="user">
     <form:input path="username" placeholder="Login"/>
     <form:errors path="username" cssStyle="color: darkred"/><BR><BR>
-    <form:input path="password" placeholder="Password"/>
+    <form:password path="password" placeholder="Password"/>
     <form:errors path="password" cssStyle="color: darkred"/><BR><BR>
     <form:button>Submit</form:button>
 </form:form>
+<h3><a href="/login/register">REGISTER NEW USER</a></h3>
 </body>
 </html>

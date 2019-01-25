@@ -13,18 +13,24 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void registerUser(User user, String repeatedPasword) throws Exception {
+    public void registerUser(User user, String repeatedPassword) throws Exception {
 
-        if(user.getPassword().equals(repeatedPasword)){
+        if(user.getPassword().equals(repeatedPassword)){
             user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             userRepository.save(user);
+            return;
         }
         throw new Exception("Password doesn't match");
     }
 
     public boolean loginUser(String login, String password, HttpSession session) {
+
+        //force logout
+        session.setAttribute("user",null);
+
+        //start login user process..
         User user = userRepository.findByUsername(login);
-        if(user != null && user.isEnabled()) {
+        if(user != null && user.isEnabled() && BCrypt.checkpw(password, user.getPassword())) {
             session.setAttribute("user", user);
             return true;
         } else {

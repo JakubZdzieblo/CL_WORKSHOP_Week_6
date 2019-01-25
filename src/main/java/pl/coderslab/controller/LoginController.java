@@ -26,6 +26,12 @@ public class LoginController {
         return "/login/login";
     }
 
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("user", new User());
+        return "login/register";
+    }
+
     @PostMapping("/check")
     public String checkLogin(@Valid User user, HttpSession session){
         if (userService.loginUser(user.getUsername(), user.getPassword(), session)){
@@ -33,5 +39,7 @@ public class LoginController {
         }
         return "login/login";
     }
+
+
 
 }

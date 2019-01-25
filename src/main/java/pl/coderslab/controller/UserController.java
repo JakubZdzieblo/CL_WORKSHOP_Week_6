@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.Tweet;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.TweetRepository;
 import pl.coderslab.repository.UserRepository;
+import pl.coderslab.service.UserService;
+import pl.coderslab.validator.groups.FullUserValidationGroup;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -23,6 +26,9 @@ public class UserController {
 
     @Autowired
     private TweetRepository tweetRepository;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/add")
     private String add(Model model){
@@ -39,11 +45,19 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    private String save(@Valid User user, BindingResult errors, HttpServletRequest request) {
+    private String save(@Validated(FullUserValidationGroup.class) User user,
+                        BindingResult errors,
+                        @RequestParam String repeatedPassword,
+                        HttpServletRequest request) {
         if(errors.hasErrors()){
-            return "user/form";
+            return "login/register";
         }
-        userRepository.save(user);
+        try {
+            userService.registerUser(user, repeatedPassword);
+        } catch (Exception e) {
+            return "login/login";
+        }
+        user.setEnabled(true);
         return "redirect:"+request.getContextPath()+"/user/all";
     }
 

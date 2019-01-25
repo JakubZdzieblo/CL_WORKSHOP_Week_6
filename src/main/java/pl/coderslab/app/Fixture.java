@@ -1,5 +1,6 @@
 package pl.coderslab.app;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.coderslab.entity.Tweet;
@@ -24,21 +25,21 @@ public class Fixture {
         User user1 = new User();
         user1.setUsername("johndoe");
         user1.setEmail("jd@mail.com");
-        user1.setPassword("pimpek33");
+        user1.setPassword(BCrypt.hashpw("pimpek33", BCrypt.gensalt()));
         user1.setEnabled(true);
         userRepository.save(user1);
 
         User user2 = new User();
         user2.setUsername("slane");
         user2.setEmail("suzie@mail.com");
-        user2.setPassword("passpass");
+        user2.setPassword(BCrypt.hashpw("passpass", BCrypt.gensalt()));
         user2.setEnabled(true);
         userRepository.save(user2);
 
         User user3 = new User();
         user3.setUsername("hankblack");
         user3.setEmail("hank@mail.com");
-        user3.setPassword("trolololo");
+        user3.setPassword(BCrypt.hashpw("trolololo", BCrypt.gensalt()));
         user3.setEnabled(true);
         userRepository.save(user3);
 
