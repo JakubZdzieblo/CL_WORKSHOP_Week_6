@@ -20,8 +20,8 @@ public class AppInitializer implements WebApplicationInitializer {
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
 
-//        Fixture fixture = (Fixture) ctx.getBean("fixture");
-//        fixture.fillDB();
+        Fixture fixture = (Fixture) ctx.getBean("fixture");
+        fixture.fillDB();
 
 
     }

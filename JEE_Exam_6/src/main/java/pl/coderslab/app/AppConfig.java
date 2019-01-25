@@ -50,10 +50,10 @@ public class AppConfig implements WebMvcConfigurer {
         JpaTransactionManager tm = new JpaTransactionManager(emf);
         return tm; }
 
-//    @Bean
-//    public Fixture fixture() {
-//        return new Fixture();
-//    }
+    @Bean
+    public Fixture fixture() {
+        return new Fixture();
+    }
 
     @Bean(name="localeResolver")
     public LocaleContextResolver getLocaleContextResolver() {
