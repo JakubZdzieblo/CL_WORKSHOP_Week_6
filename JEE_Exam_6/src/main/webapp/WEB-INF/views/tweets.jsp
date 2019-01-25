@@ -4,6 +4,11 @@
 <html>
 <head>
     <title>Tweets</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
 <h3>Found Tweets:</h3>

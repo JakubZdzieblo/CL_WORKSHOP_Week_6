@@ -76,6 +76,10 @@ public class User {
 
     @Override
     public String toString() {
-        return firstName + lastName;
+        return firstName + " " + lastName;
+    }
+
+    public String getName(){
+        return firstName + " " + lastName;
     }
 }

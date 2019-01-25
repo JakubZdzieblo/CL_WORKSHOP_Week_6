@@ -57,6 +57,17 @@ public class Fixture {
         tweet3.setUser(user3);
         tweetRepository.save(tweet3);
 
+        Tweet tweet4 = new Tweet();
+        tweet4.setTitle("Still cool");
+        tweet4.setTweetText("Everything continues to be cool here");
+        tweet4.setUser(user1);
+        tweetRepository.save(tweet4);
+
+        Tweet tweet5 = new Tweet();
+        tweet5.setTitle("Not so cool now maybe");
+        tweet5.setTweetText("But can't complain, really");
+        tweet5.setUser(user1);
+        tweetRepository.save(tweet5);
 
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tweeter_tweet")
@@ -30,7 +31,7 @@ public class Tweet {
     private String tweetText;
 
     @CreationTimestamp
-    private LocalDate created;
+    private LocalDateTime created;
 
     @ManyToOne
     private User user;
@@ -62,11 +63,11 @@ public class Tweet {
         this.tweetText = tweetText;
     }
 
-    public LocalDate getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 

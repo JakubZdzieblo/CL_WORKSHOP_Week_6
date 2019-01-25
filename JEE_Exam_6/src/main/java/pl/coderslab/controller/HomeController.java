@@ -16,10 +16,15 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    TweetRepository tweetRepository;
+    private TweetRepository tweetRepository;
+
+    @GetMapping("")
+    public String redirect(){
+        return "index";
+    }
 
     @GetMapping("/home")
     public String home(){
