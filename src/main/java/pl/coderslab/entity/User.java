@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "users")
 public class User {
 
 
@@ -33,8 +33,11 @@ public class User {
     @Email(groups = FullUserValidationGroup.class)
     private String email;
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//    private List<Tweet> tweets = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Tweet> tweets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
 
     public User() {
     }
@@ -71,7 +74,21 @@ public class User {
         this.id = id;
     }
 
+    public List<Tweet> getTweets() {
+        return tweets;
+    }
 
+    public void setTweets(List<Tweet> tweets) {
+        this.tweets = tweets;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public String getEmail() {
         return email;

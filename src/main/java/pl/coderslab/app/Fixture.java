@@ -3,8 +3,10 @@ package pl.coderslab.app;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Tweet;
 import pl.coderslab.entity.User;
+import pl.coderslab.repository.CommentRepository;
 import pl.coderslab.repository.TweetRepository;
 import pl.coderslab.repository.UserRepository;
 
@@ -16,6 +18,9 @@ public class Fixture {
 
     @Autowired
     TweetRepository tweetRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     public Fixture() {
     }
@@ -72,6 +77,18 @@ public class Fixture {
         tweet5.setTweetText("But can't complain, really");
         tweet5.setUser(user1);
         tweetRepository.save(tweet5);
+
+        Comment comment1_1 = new Comment();
+        comment1_1.setTweet(tweet1);
+        comment1_1.setUser(user3);
+        comment1_1.setText("No it's not");
+        commentRepository.save(comment1_1);
+
+        Comment comment1_2 = new Comment();
+        comment1_2.setTweet(tweet1);
+        comment1_2.setUser(user1);
+        comment1_2.setText("Don't be such a downer");
+        commentRepository.save(comment1_2);
 
     }
 }

@@ -7,9 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "tweeter_tweet")
+@Table(name = "tweets")
 public class Tweet {
 
     @Id
@@ -20,9 +22,9 @@ public class Tweet {
     @Column(length = 50)
     private String title;
 
-    @Size(max = 160)
+    @Size(max = 140)
     @NotEmpty
-    @Column(length = 160)
+    @Column(length = 140)
     private String tweetText;
 
     @CreationTimestamp
@@ -30,6 +32,9 @@ public class Tweet {
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "tweet")
+    private List<Comment> comments = new ArrayList<>();
 
     public Tweet() {
     }
@@ -72,6 +77,14 @@ public class Tweet {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

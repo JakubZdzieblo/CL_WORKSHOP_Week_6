@@ -23,28 +23,25 @@
 </head>
 <body>
 
-<h3>List of tweets:</h3>
+<h3>List of tweets by ${user}:</h3>
 <table>
     <tr>
         <th>Created</th>
-        <th>User</th>
         <th>Title</th>
         <th>Text</th>
         <th></th>
-        <th></th>
+        <%--<th></th>--%>
     </tr>
-    <c:forEach items="${tweets}" var="tweet">
+    <c:forEach items="${tweetsByUser}" var="tweet">
         <tr>
             <td>${tweet.created}</td>
-            <td>${tweet.user}</td>
             <td>${tweet.title}</td>
             <td>${tweet.tweetText}</td>
-            <td><a href="${pageContext.request.contextPath}/tweet/edit/${tweet.id}">EDIT</a></td>
-            <td><a href="${pageContext.request.contextPath}/tweet/delete/${tweet.id}">DELETE</a></td>
+            <a href="${pageContext.request.contextPath}/tweet/details/${tweet.id}">DETAILS</a></td>
+            <%--<td><a href="${pageContext.request.contextPath}/tweet/delete/${tweet.id}">DELETE</a></td>--%>
         </tr>
     </c:forEach>
 </table>
 
-<p><a href="${pageContext.request.contextPath}/tweet/add">Add new tweet</a></p>
-<p><a href="${pageContext.request.contextPath}">Get back home</a></p>
+<p><a href="${pageContext.request.contextPath}/">Get back home</a></p>
 </body>

@@ -7,6 +7,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.coderslab.converter.CommentConverter;
 import pl.coderslab.converter.TweetConverter;
 import pl.coderslab.converter.UserConverter;
 
@@ -20,6 +21,7 @@ public class FormatterConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getUserConverter());
         registry.addConverter(getTweetConverter());
+        registry.addConverter(getCommentConverter());
     }
 
     @Bean
@@ -30,6 +32,11 @@ public class FormatterConfig implements WebMvcConfigurer {
     @Bean
     public TweetConverter getTweetConverter() {
         return new TweetConverter();
+    }
+
+    @Bean
+    public CommentConverter getCommentConverter() {
+        return new CommentConverter();
     }
 
 

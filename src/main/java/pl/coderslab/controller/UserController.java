@@ -70,6 +70,14 @@ public class UserController {
         return "user/list";
     }
 
+    @GetMapping("/tweets/{id}")
+    private String tweets(@PathVariable Long id, Model model) {
+        List<Tweet> list = tweetRepository.findAllByUserIdOrderByCreatedDesc(id);
+        model.addAttribute("tweetsByUser", list);
+        model.addAttribute("user", userRepository.findOne(id));
+        return "/user/tweets";
+    }
+
     @GetMapping("/delete/{id}")
     private String delete(@PathVariable Long id, HttpServletRequest request){
         List<Tweet> tweetList = tweetRepository.findAllByUserId(id);

@@ -12,7 +12,6 @@
     </style>
 </head>
 <body>
-Hi. Home page here.
 <BR>
 <c:choose>
     <c:when test="${empty sessionScope.user}">
@@ -20,7 +19,8 @@ Hi. Home page here.
     </c:when>
     <c:otherwise>
         ${sessionScope.user} logged in. Hi!
-        <h3>Please fill in tweet details</h3>
+        <a href="user/tweets/${sessionScope.user.id}">Your tweets</a>
+        <h3>Add new tweet!</h3>
         <form:form method="post" action="/tweet/save" modelAttribute="tweet">
             <form:hidden path="id"/>
             <form:hidden path="created"/>
@@ -37,7 +37,7 @@ Hi. Home page here.
 <h3>The Tweets:</h3>
 <c:forEach items="${allTweets}" var="tweet">
     <p><b>Title:</b> ${tweet.title}, <b>by:</b> ${tweet.user}</p>
-    <p><b>Date:</b> ${tweet.created}:</p>
+    <p><b>Date:</b> ${tweet.created}, <a href="/tweet/details/${tweet.id}">details</a></td></p>
     <p><b>Text:</b> ${tweet.tweetText}</p>
     <hr>
 </c:forEach>
