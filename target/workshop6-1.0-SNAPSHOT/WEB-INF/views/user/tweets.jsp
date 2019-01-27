@@ -37,7 +37,7 @@
             <td>${tweet.created}</td>
             <td>${tweet.title}</td>
             <td>${tweet.tweetText}</td>
-            <a href="${pageContext.request.contextPath}/tweet/details/${tweet.id}">DETAILS</a></td>
+            <td><a href="${pageContext.request.contextPath}/tweet/details/${tweet.id}">DETAILS</a></td>
             <%--<td><a href="${pageContext.request.contextPath}/tweet/delete/${tweet.id}">DELETE</a></td>--%>
         </tr>
     </c:forEach>

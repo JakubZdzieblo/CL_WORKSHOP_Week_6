@@ -39,7 +39,11 @@ public class LoginController {
     }
 
     @PostMapping("/check")
-    public String checkLogin(@Valid User user, HttpSession session, HttpServletRequest request, Model model){
+    public String checkLogin(@Valid User user, BindingResult errors, HttpSession session, HttpServletRequest request, Model model){
+        if (errors.hasErrors()) {
+            return "login/login";
+        }
+
         if (userService.loginUser(user.getUsername(), user.getPassword(), session)){
             model.addAttribute("tweet", new Tweet());
             return "redirect:"+request.getContextPath()+"/";
