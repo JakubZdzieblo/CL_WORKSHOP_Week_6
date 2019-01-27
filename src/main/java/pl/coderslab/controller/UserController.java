@@ -48,14 +48,16 @@ public class UserController {
     private String save(@Validated(FullUserValidationGroup.class) User user,
                         BindingResult errors,
                         @RequestParam String repeatedPassword,
-                        HttpServletRequest request) {
+                        HttpServletRequest request,
+                        Model model) {
         if(errors.hasErrors()){
-            return "login/register";
+            return "user/form";
         }
         try {
             userService.registerUser(user, repeatedPassword);
         } catch (Exception e) {
-            return "login/login";
+            model.addAttribute("error", "Passwords do not match");
+            return "user/form";
         }
         user.setEnabled(true);
         return "redirect:"+request.getContextPath()+"/user/all";

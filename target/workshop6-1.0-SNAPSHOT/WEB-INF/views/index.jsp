@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-Hi.
+Hi. Home page here.
 <BR>
 <c:choose>
     <c:when test="${empty sessionScope.user}">
@@ -22,5 +22,13 @@ Hi.
         ${sessionScope.user} logged in. Hi!
     </c:otherwise>
 </c:choose>
+<h3>The Tweets:</h3>
+<c:forEach items="${tweets}" var="tweet">
+    <p><b>Title:</b> ${tweet.title}, <b>by:</b> ${tweet.user}</p>
+    <p><b>Date:</b> ${tweet.created}:</p>
+    <p><b>Text:</b> ${tweet.tweetText}</p>
+    <hr>
+</c:forEach>
+
 </body>
 </html>
