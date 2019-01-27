@@ -24,7 +24,9 @@ public class HomeController {
     private TweetRepository tweetRepository;
 
     @GetMapping("")
-    public String redirect(){
+    public String redirect(Model model){
+
+        model.addAttribute("tweet", new Tweet());
         return "index";
     }
 
@@ -42,7 +44,7 @@ public class HomeController {
         return "tweets";
     }
 
-    @ModelAttribute("tweets")
+    @ModelAttribute("allTweets")
     public List<Tweet> tweets(){
         return tweetRepository.findAllByOrderByCreatedDesc();
     }

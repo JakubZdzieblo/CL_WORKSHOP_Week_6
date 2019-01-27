@@ -20,10 +20,22 @@ Hi. Home page here.
     </c:when>
     <c:otherwise>
         ${sessionScope.user} logged in. Hi!
+        <h3>Please fill in tweet details</h3>
+        <form:form method="post" action="/tweet/save" modelAttribute="tweet">
+            <form:hidden path="id"/>
+            <form:hidden path="created"/>
+            <form:hidden path="user" value="${sessionScope.user.id}"/>
+            <form:input path="title" placeholder="Title"/>
+            <form:errors path="title" cssStyle="color: darkred"/><BR><BR>
+            <form:textarea path="tweetText" placeholder="Tweet Text" cols="50" rows="3"/>
+            <form:errors path="tweetText" cssStyle="color: darkred"/><BR><BR>
+            <form:errors path="user" cssStyle="color: darkred"/>
+            <form:button>Submit</form:button>
+        </form:form>
     </c:otherwise>
 </c:choose>
 <h3>The Tweets:</h3>
-<c:forEach items="${tweets}" var="tweet">
+<c:forEach items="${allTweets}" var="tweet">
     <p><b>Title:</b> ${tweet.title}, <b>by:</b> ${tweet.user}</p>
     <p><b>Date:</b> ${tweet.created}:</p>
     <p><b>Text:</b> ${tweet.tweetText}</p>

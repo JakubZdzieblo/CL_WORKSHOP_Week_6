@@ -41,10 +41,10 @@ public class TweetController {
     @PostMapping("/save")
     private String save(@Valid Tweet tweet, BindingResult errors, HttpServletRequest request) {
         if(errors.hasErrors()){
-            return "tweet/form";
+            return "index";
         }
         tweetRepository.save(tweet);
-        return "redirect:"+request.getContextPath()+"/tweet/all";
+        return "redirect:"+request.getContextPath()+"/";
     }
 
     @GetMapping("/all")
@@ -63,6 +63,11 @@ public class TweetController {
     @ModelAttribute("users")
     public List<User> user() {
         return userRepository.findAll();
+    }
+
+    @ModelAttribute("allTweets")
+    public List<Tweet> tweets(){
+        return tweetRepository.findAllByOrderByCreatedDesc();
     }
 
 }

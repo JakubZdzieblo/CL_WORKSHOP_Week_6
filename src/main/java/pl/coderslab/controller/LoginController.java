@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.entity.Tweet;
 import pl.coderslab.entity.User;
 import pl.coderslab.service.UserService;
 import pl.coderslab.validator.groups.FullUserValidationGroup;
@@ -38,9 +39,10 @@ public class LoginController {
     }
 
     @PostMapping("/check")
-    public String checkLogin(@Valid User user, HttpSession session){
+    public String checkLogin(@Valid User user, HttpSession session, HttpServletRequest request, Model model){
         if (userService.loginUser(user.getUsername(), user.getPassword(), session)){
-            return "index";
+            model.addAttribute("tweet", new Tweet());
+            return "redirect:"+request.getContextPath()+"/";
         }
         return "login/login";
     }
