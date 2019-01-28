@@ -20,7 +20,7 @@ public class User {
     private Long id;
 
     @NotEmpty(groups = {Default.class, FullUserValidationGroup.class})
-    @Column(length = 100)
+    @Column(length = 100, unique = true)
     private String username;
 
     @NotEmpty(groups = {Default.class, FullUserValidationGroup.class})
@@ -38,6 +38,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "sender")
+    private List<Message> messagesSent = new ArrayList<>();
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Message> messagesReceived = new ArrayList<>();
 
     public User() {
     }
@@ -96,6 +102,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Message> getMessagesSent() {
+        return messagesSent;
+    }
+
+    public void setMessagesSent(List<Message> messagesSent) {
+        this.messagesSent = messagesSent;
+    }
+
+    public List<Message> getMessagesReceived() {
+        return messagesReceived;
+    }
+
+    public void setMessagesReceived(List<Message> messagesReceived) {
+        this.messagesReceived = messagesReceived;
     }
 
     @Override
